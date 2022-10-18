@@ -3,7 +3,7 @@ const desktopMenu = document.querySelector('.desktop-menu')
 const burguerMenu = document.querySelector('.menu')
 const carShopMenu = document.querySelector('.navbar-shopping-car')
 const mobileMenu = document.querySelector('.mobile-menu')
-const DetailsOrderMenu = document.querySelector('.product-detail')
+const DetailsOrderMenu = document.querySelector('#shoppingCartContainer')
 const cardsContainer = document.querySelector('.cards-container')
 
 
