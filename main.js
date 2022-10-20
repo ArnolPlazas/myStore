@@ -3,14 +3,26 @@ const desktopMenu = document.querySelector('.desktop-menu')
 const burguerMenu = document.querySelector('.menu')
 const carShopMenu = document.querySelector('.navbar-shopping-car')
 const mobileMenu = document.querySelector('.mobile-menu')
+const productDetailClose = document.querySelector('.product-detail-close')
 const DetailsOrderMenu = document.querySelector('#shoppingCartContainer')
 const cardsContainer = document.querySelector('.cards-container')
+const productDetailContainer = document.querySelector('#productDetail')
 
 
 
 menuEmail.addEventListener('click', toggleDesktopMenu)
 burguerMenu.addEventListener('click', toggleMobileMenu)
 carShopMenu.addEventListener('click', toggleCarShopMenu)
+productDetailClose.addEventListener('click', closeProductDetail)
+
+function closeProductDetail(){
+    productDetailContainer.classList.add('inactive')
+}
+
+function openProductDetail(){
+    productDetailContainer.classList.remove('inactive')
+    DetailsOrderMenu.classList.add('inactive')
+}
 
 function toggleDesktopMenu(){
     DetailsOrderMenu.classList.add('inactive')
@@ -20,10 +32,12 @@ function toggleDesktopMenu(){
 function toggleMobileMenu(){
     DetailsOrderMenu.classList.add('inactive')
     mobileMenu.classList.toggle('inactive')
+    productDetailContainer.classList.add('inactive')
 }
 
 function toggleCarShopMenu(){
     mobileMenu.classList.add('inactive')
+    productDetailContainer.classList.add('inactive')
     DetailsOrderMenu.classList.toggle('inactive')
 }
 
@@ -81,8 +95,10 @@ function renderProducts(productList){
         const productCard = document.createElement('div')
         productCard.classList.add('product-card')
     
-        const ProductImg = document.createElement('img')
-        ProductImg.setAttribute('src', product.image)
+        const productImg = document.createElement('img')
+        productImg.setAttribute('src', product.image)
+        productImg.addEventListener('click', openProductDetail)
+
     
         const productInfo = document.createElement('div')
         productInfo.classList.add('product-info')
@@ -102,7 +118,7 @@ function renderProducts(productList){
         productInfoFigure.appendChild(productCart)
         productInfoDiv.append(productPrice, productName)
         productInfo.append(productInfoDiv, productInfoFigure)
-        productCard.append(ProductImg, productInfo)
+        productCard.append(productImg, productInfo)
         cardsContainer.appendChild(productCard)
     
     }
